@@ -1,7 +1,7 @@
 %define rname actionpack
 %define name ruby-%{rname}
-%define version 1.12.5
-%define release %mkrel 2
+%define version 1.13.3
+%define release %mkrel 1
 
 Summary:	Part of Rails framework handling controller/view split
 Name:		%{name}
@@ -9,8 +9,6 @@ Version:	%{version}
 Release:	%{release}
 URL:		http://www.rubyonrails.com/
 Source0:	%{rname}-%{version}.gem
-# (blino) from http://dev.rubyonrails.org/ticket/6513
-Patch0:		actionpack-1.12.5-rdoc.patch
 License:	MIT
 Group:		Development/Ruby
 BuildRoot:	%{_tmppath}/%{name}-buildroot
@@ -56,7 +54,6 @@ mv tmp-%rname-%version/gems/%rname-%version .
 mv tmp-%rname-%version/specifications/%rname-%version.gemspec %rname-%version/
 rm -rf tmp-%rname-%version
 %setup -T -D -n %rname-%version
-%patch0 -p1 -b .rdoc
 
 %build
 rdoc --ri --op ri lib
