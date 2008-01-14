@@ -1,6 +1,6 @@
 %define rname actionpack
 %define name ruby-%{rname}
-%define version 1.13.3
+%define version 2.0.2
 %define release %mkrel 1
 
 Summary:	Part of Rails framework handling controller/view split
@@ -65,7 +65,7 @@ rm -rf %buildroot
 mkdir -p $RPM_BUILD_ROOT{%{ruby_sitelibdir},%{ruby_ridir},%{ruby_gemdir}/specifications}
 
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_sitelibdir}
-cp -a ri/{ActionController,ActionView,CGIMethods} $RPM_BUILD_ROOT%{ruby_ridir}
+cp -a ri/{ActionController,ActionView,CGI} $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a %rname-%version.gemspec $RPM_BUILD_ROOT%{ruby_gemdir}/specifications/
 
 for f in `find %buildroot%{ruby_sitelibdir} examples -type f`
@@ -88,6 +88,6 @@ rm -rf %buildroot
 %{ruby_sitelibdir}/*
 %{ruby_ridir}/*
 %{ruby_gemdir}/specifications/%rname-%version.gemspec
-%doc CHANGELOG README rdoc examples
+%doc CHANGELOG README rdoc
 
 
