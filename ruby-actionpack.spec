@@ -1,6 +1,6 @@
 %define rname actionpack
 %define name ruby-%{rname}
-%define version 2.0.2
+%define version 2.1.0
 %define release %mkrel 1
 
 Summary:	Part of Rails framework handling controller/view split
