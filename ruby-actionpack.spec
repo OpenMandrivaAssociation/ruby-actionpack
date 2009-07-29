@@ -1,6 +1,6 @@
 %define rname actionpack
 %define name ruby-%{rname}
-%define version 2.1.2
+%define version 2.3.3
 %define release %mkrel 1
 
 Summary:	Part of Rails framework handling controller/view split
@@ -8,7 +8,7 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 URL:		http://www.rubyonrails.com/
-Source0:	%{rname}-%{version}.gem
+Source0:	http://rubyforge.org/frs/download.php/60613/%{rname}-%{version}.gem
 License:	MIT
 Group:		Development/Ruby
 BuildRoot:	%{_tmppath}/%{name}-buildroot
