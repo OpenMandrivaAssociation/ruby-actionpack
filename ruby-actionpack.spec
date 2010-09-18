@@ -1,19 +1,15 @@
-%define rname actionpack
-%define name ruby-%{rname}
-%define version 2.3.4
-%define release %mkrel 1
+%define	rname	actionpack
 
 Summary:	Part of Rails framework handling controller/view split
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		ruby-%{rname}
+Version:	2.3.9
+Release:	%mkrel 1
 URL:		http://www.rubyonrails.com/
 Source0:	http://rubyforge.org/frs/download.php/60613/%{rname}-%{version}.gem
 License:	MIT
 Group:		Development/Ruby
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
-Requires:	ruby 
 BuildRequires:	ruby-RubyGems 
 
 %description
@@ -46,48 +42,21 @@ Pack can play when used together with Active Record on
 http://www.rubyonrails.org.
 
 %prep
-rm -rf %rname-%version
-rm -rf tmp-%rname-%version
-mkdir tmp-%rname-%version
-gem install --ignore-dependencies %{SOURCE0} --no-rdoc --install-dir `pwd`/tmp-%rname-%version
-mv tmp-%rname-%version/gems/%rname-%version .
-mv tmp-%rname-%version/specifications/%rname-%version.gemspec %rname-%version/
-rm -rf tmp-%rname-%version
-%setup -T -D -n %rname-%version
 
 %build
-rdoc --ri --op ri lib
-rdoc --op rdoc lib
-chmod 0644 README
 
 %install
 rm -rf %buildroot
-mkdir -p $RPM_BUILD_ROOT{%{ruby_sitelibdir},%{ruby_ridir},%{ruby_gemdir}/specifications}
+gem install -E -n %{buildroot}%{_bindir} --local --install-dir %{buildroot}/%{ruby_gemdir} --force %{SOURCE0}
 
-cp -a lib/* $RPM_BUILD_ROOT%{ruby_sitelibdir}
-cp -a ri/{ActionController,ActionView,CGI} $RPM_BUILD_ROOT%{ruby_ridir}
-cp -a %rname-%version.gemspec $RPM_BUILD_ROOT%{ruby_gemdir}/specifications/
-
-for f in `find %buildroot%{ruby_sitelibdir} examples -type f`
-do
-        if head -n1 "$f" | grep '^#!' >/dev/null;
-        then
-                sed -i 's|/usr/local/bin|/usr/bin|' "$f"
-                chmod 0755 "$f"
-        else
-                chmod 0644 "$f"
-        fi
-done
-
+rm -rf %{buildroot}%{ruby_gemdir}/cache
+chmod g-w,g+r,o+r -R %{buildroot}
 
 %clean
 rm -rf %buildroot
 
 %files
 %defattr(-,root,root)
-%{ruby_sitelibdir}/*
-%{ruby_ridir}/*
-%{ruby_gemdir}/specifications/%rname-%version.gemspec
-%doc CHANGELOG README rdoc
-
-
+%doc %{ruby_gemdir}/doc/%{rname}-%{version}
+%{ruby_gemdir}/gems/%{rname}-%{version}
+%{ruby_gemdir}/specifications/%{rname}-%{version}.gemspec
