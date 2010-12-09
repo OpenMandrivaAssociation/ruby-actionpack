@@ -3,7 +3,7 @@
 Summary:	Part of Rails framework handling controller/view split
 Name:		ruby-%{rname}
 Version:	2.3.10
-Release:	%mkrel 1
+Release:	%mkrel 2
 URL:		http://www.rubyonrails.com/
 Source0:	http://rubygems.org/gems/%{rname}-%{version}.gem
 License:	MIT
@@ -11,6 +11,7 @@ Group:		Development/Ruby
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
 BuildRequires:	ruby-RubyGems 
+Provides:	rubygem(%{rname})
 
 %description
 Action Pack splits the response to a web request into a controller part
