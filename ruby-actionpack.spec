@@ -4,7 +4,7 @@ Summary:	Part of Rails framework handling controller/view split
 Name:		ruby-%{rname}
 Version:	3.2.3
 Release:	2
-URL:		http://www.rubyonrails.com/
+URL:		https://www.rubyonrails.com/
 Source0:	http://rubygems.org/gems/%{rname}-%{version}.gem
 License:	MIT
 Group:		Development/Ruby
